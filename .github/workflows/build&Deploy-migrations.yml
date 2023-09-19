@@ -35,7 +35,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Executions migrations
-        uses: ./
+        uses: jairosousa/reusable-migration-flow@main
         with:
           url: ${{ inputs.url }}
           user: ${{ inputs.username }}
