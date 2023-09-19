@@ -1,0 +1,33 @@
+name: Migration Flyway
+description: Migrate database in Github Action
+branding:
+  color: blue
+  icon: database
+inputs:
+  url:
+    description: The jdbc url to use to connect to the database
+    required: true
+  user:
+    description: The user to use to connect to the database
+    required: false
+  password:
+    description: The password to use to connect to the database
+    required: false
+  locations:
+    description: Comma-separated list of locations to scan recursively for migrations
+    required: true
+    default: filesystem:./migrations
+  initSql:
+    description: The SQL statements to run to initialize a new database connection immediately after opening it
+    required: false
+runs:
+  using: docker
+  image: docker://flyway/flyway:9
+  env:
+    FLYWAY_URL: ${{ inputs.url }}
+    FLYWAY_USER: ${{ inputs.user }}
+    FLYWAY_PASSWORD: ${{ inputs.password }}
+    FLYWAY_LOCATIONS: ${{ inputs.locations }}
+    FLYWAY_INIT_SQL: ${{ inputs.initSql }}
+  args:
+    - migrate
