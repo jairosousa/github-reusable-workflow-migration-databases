@@ -6,15 +6,6 @@ name: GitHub Pipeline Migrations
 on:
   workflow_call:
     inputs:
-      url:
-        required: true
-        type: string
-      username:
-        required: false
-        type: string
-      password:
-        required: false
-        type: string
       locations:
         required: false
         type: string
@@ -22,6 +13,13 @@ on:
       initSql:
         required: false
         type: string
+    secrets:
+      url:
+        required: true
+      username:
+        required: false
+      password:
+        required: false
 jobs:
   # This workflow contains a single job called "build"
   build-migrations:
@@ -37,7 +35,7 @@ jobs:
       - name: Executions migrations
         uses: jairosousa/reusable-migration-flow@main
         with:
-          url: ${{ inputs.url }}
-          user: ${{ inputs.username }}
-          password: ${{ inputs.password }}
+          url: ${{ secrets.url }}
+          user: ${{ secrets.username }}
+          password: ${{ secrets.password }}
           locations: ${{ inputs.locations }}
