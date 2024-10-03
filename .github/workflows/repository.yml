@@ -12,3 +12,9 @@ jobs:
     steps:
       - name: Configurar variáveis
         run: echo "REPO_NAME=${{ github.repository }}" >> $GITHUB_ENV
+
+      - name: Exibir nome do repositório
+        env:
+          NOME_REPO: ${{ github.event.repository.name }}
+          GITHUB_REPO_NAME: ${{env.NOME_REPO}}
+        run: echo ${{NOME_REPO}}
