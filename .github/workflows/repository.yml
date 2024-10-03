@@ -1,4 +1,4 @@
-nv.name: Exemplo de Workflow
+name: Workflow
 
 on:
   push:
@@ -16,5 +16,4 @@ jobs:
       - name: Exibir nome do repositório
         env:
           NOME_REPO: ${{ github.event.repository.name }}
-          GITHUB_REPO_NAME: ${{env.NOME_REPO}}
         run: echo ${{ env.NOME_REPO }}
