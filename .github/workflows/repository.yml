@@ -1,0 +1,17 @@
+name: Exemplo de Workflow
+
+on:
+  push:
+    branches:
+      - '**'
+  workflow_dispatch:
+
+jobs:
+  exemplo:
+    runs-on: ubuntu-latest
+    steps:
+      steps:
+      - name: Configurar variáveis
+        run: echo "REPO_NAME=${{ github.repository }}" >> $GITHUB_ENV
+      - name: Exibir nome do repositório
+        run: echo "Nome do repositório: $REPO_NAME"
